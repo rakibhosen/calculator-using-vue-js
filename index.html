@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>Vue js</title>
+         
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</script>
+    </head>
+    <body>
+        <div id="app">
+            <h1 class="text-center">Simple Calculator</h1>
+            <div class="card">
+                <div class="container">
+              <div class="card-body">
+
+                    <div class="alert-danger" v-if="hasError">
+                            {{error}}
+                        </div>
+
+                    <div class="alert-success mt-2 mb-2" v-else>
+                        Result : {{result}}
+                    </div>
+
+                
+                  <div class="row">
+                    
+                      <div class="col-md-6">
+                        <input type="num" class="form-control" @keyup="checkError" v-model="num_one">
+                      </div>
+
+                      <div class="col-md-6">
+                        <input type="num" class="form-control" @keyup="checkError" v-model="num_two">
+                      </div>
+
+                  </div>
+                  <!-- button start........................... -->
+            
+                  <div class="row mt-2">
+
+                    <div class="col-md-3">
+                        <button class="btn btn-success btn-block" type="button" v-on:click="add">+</button>
+                    </div>
+
+                <div class="col-md-3">
+                        <button class="btn btn-success btn-block" type="button"  v-on:click="sub">-</button>
+                    </div>
+                <div class="col-md-3">
+                        <button class="btn btn-success btn-block" type="button" v-on:click="mul">*</button>
+                    </div>
+        
+                <div class="col-md-3">
+                        <button class="btn btn-success btn-block" type="button" v-on:click="div">/</button>
+                    </div>
+                        
+
+                </div>
+            </div>
+              </div>
+            </div>
+            
+        </div>
+
+        <script type="text/javascript" src="js/vue.js"></script>
+        <script>
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    num_one:"",
+                    num_two:"",
+                    hasError:false,
+                    result: "",
+                    error:"",
+                },
+                methods:{
+                add(){
+                    this.result = Number(this.num_one) + Number(this.num_two);
+                },
+
+                sub(){
+                    this.result = Number(this.num_one) - Number(this.num_two);
+                },
+
+                mul(){
+                    this.result = Number(this.num_one) * Number(this.num_two);
+                },
+
+                div(){
+                 this.result = Number(this.num_one) / Number(this.num_two);
+                },
+
+                checkError(){
+                    if(isNaN(this.num_one)){
+                        this.hasError=true
+                        this.error="Please enter valid number"
+                    }else if(isNaN(this.num_two)){
+                        this.hasError=true;
+                        this.error="Please enter valid number"
+                    }else{
+                        this.hasError=false
+                        this.error="";
+                    }
+                }
+            }
+
+      
+                
+            })
+        </script>
+    </body>
+</html>
